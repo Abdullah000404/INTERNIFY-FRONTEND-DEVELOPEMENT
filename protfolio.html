@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>personal protfolio</title>
+    <style>
+        body
+        {
+            margin:0%;
+            padding: 0%;
+            box-sizing:border-box;
+        }
+        html{
+            scroll-behavior: smooth;
+        }
+        body{
+            font-family: arial, sans-serif;
+            background:grey ;
+            color: white;
+        }
+        header{
+            background: red;
+            position:sticky;
+            top:0;
+            z-index: 100;
+        }
+        nav{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 8%;
+        }
+        logo{
+            color: rgb(255, 255, 255);
+            font-size: 30px;
+            font-weight: bold;
+        }
+        nav ul{
+            display: flex;
+            list-style: none;
+        }
+        nav ul li{
+            margin-left: 20px;
+        }
+        nav ul li a{
+            text-decoration: none;
+            color: white;
+            transition: 0.3s;
+        }
+        nav ul li a:hover{
+            color: rgb(132, 32, 32);
+        }
+        hero h1{
+            font-size: 50px;
+        }
+        hero p{
+            margin-top: 10px;
+        }
+        section{
+            padding: 60px 8%;
+        }
+        h2{
+            text-align: center;
+            margin-bottom: 30px;
+            color: rgb(55, 5, 51);
+        }
+        about{
+            display: flex;
+            gap: 30px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        about img{
+            width: 220px;
+            border-radius: 50%;
+        }
+        about-text{
+            flex: 1;
+        }
+        skill{
+            margin-bottom: 20px;
+        }
+        skill name{
+            display: block;
+            margin-bottom: 20px;
+        }
+        bar{
+            height: 20px;
+            background: rgb(255, 255, 255);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        progress{
+            height: 100%;
+            background: rgb(132, 32, 32);
+            width: 0%;
+            border-radius: 10px;
+        }
+        project-container{
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        card{
+            flex: 1;
+            background: rgb(255, 255, 255);
+            min-width: 280px;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            transition: 0.3s;
+        }
+        card:hover{
+            transform: translateY(-5px);
+        }
+        card img{
+            width: 100%;
+        }
+        card-content{
+            padding: 15px;
+        }
+        form{
+            max-width: 500px;
+            margin: 0 auto;
+        }
+        input, textarea{
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: none;
+            border-radius: 5px;
+        }
+        button{
+            width: 100%;
+            padding: 10px 20px;
+            background: rgb(132, 32, 32);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        button:hover{
+            background: rgb(55, 5, 51);
+        }
+        social{
+            text-align: center;
+            margin-top: 20px;
+        }
+        social a{
+            text-decoration: none;
+            margin: 0 10px;
+            font-size: 25px;
+        }
+        section{
+            animation: fadeIn 1s ease-in-out;
+        }
+        @keyframes fadeIn{
+            from{
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to{
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        @media (max-width: 768px){
+            nav{
+                flex-direction: column;
+            }
+            nav ul{
+                margin-top: 10px;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            about{
+                flex-direction: column;
+                text-align: center;
+            }
+            hero h1{
+                font-size: 30px;
+            }
+            </style>
+</head>
+<body>
+    <!--navbar-->
+    <header>
+        <nav>
+            <logo>My Portfolio</logo>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+    <!--home-->
+    <section class="hero"id="home">
+        <h1>Welcome to My Portfolio</h1>
+        <p>I'm a BS IT student and a web designer.</p>
+    </section>
+    <!--About-->
+    <section id="about">
+        <h2>About Me</h2>
+        <div class="about">
+            <img src="profile.jpg" alt="Profile Picture">
+            alt="Profile Picture">
+            <div class="about-text">
+                <p>Hello! I'm a passionate web designer and a BS IT student. I love creating beautiful and functional websites. My goal is to continuously improve my skills and contribute to exciting projects.</p>
+            </div>
+        </div>
+    </section>
+    <!--Skills-->
+    <section id="skills">
+        <h2>My Skills</h2>
+        <div class="skill">
+            <div class="skill-name"HTML</div>
+            <bar><progress style="width: 90%;"></progress></bar>
+        </div>
+        <div class="skill">
+            <name>CSS</name>
+            <bar><progress style="width: 85%;"></progress></bar>
+        </div>
+        <div class="skill">
+            <name>JavaScript</name>
+            <bar><progress style="width: 75%;"></progress></bar>
+        </div>
+        <div class="skill">
+            <name>PHP</name>
+            <bar><progress style="width: 70%;"></progress></bar>
+        <div class="skill">
+            <name>java</name>
+            <bar><progress style="width: 65%;"></progress></bar>
+            <div class="skill">
+                <name>mysql</name>
+                <bar><progress style="width: 60%;"></progress></bar>
+        </div>
+        </section>
+        <!--Projects-->
+        <section id="projects">
+            <h2>My Projects</h2>
+            <div class="project-container">
+                <card>
+                    <img src="project1.jpg" alt="Project 1">
+                    <div class="card-content">
+                        <h3>calculator App</h3>
+                        <p>A Basic calculator using HTML,CSS and javaScripe.</p>
+                    </div>
+                </card>
+                <card>
+                    <img src="project2.jpg" alt="Project 2">
+                    <div class="card-content">
+                        <h3>login page</h3>
+                        <p>A RESPONSIVE LOGIN PAGE WITH MODERN DESIGN.</p>
+                    </div>
+                </card>
+            </div>
+        </section>
+        <!--Contact-->
+        <section id="contact">
+            <h2>Contact Me</h2>
+            <form action="submit_form.php" method="post">
+                <input type="text" name="name" placeholder="Your Name" required>
+                <input type="email" name="email" placeholder="Your Email" required>
+                <textarea name="message" rows="5" placeholder="Your Message" required></textarea>
+                <button type="submit">Send Message</button>
+            </form>
+            <div class="social">
+                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                <a href="#"><i class="fab fa-github"></i></a>
+            </div>
+        </section>
+        </body>
+</html>
