@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Country Search App</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: lightgray;
+            text-align: center;
+            padding: 20px;
+        }
+
+        h1 {
+            color: darkblue;
+        }
+
+        input {
+            padding: 10px;
+            width: 250px;
+        }
+
+        button {
+            padding: 10px 15px;
+            cursor: pointer;
+        }
+
+        #loading {
+            display: none;
+            color: blue;
+            margin-top: 10px;
+        }
+
+        #error {
+            color: red;
+            margin-top: 10px;
+        }
+
+        .card {
+            background: white;
+            width: 300px;
+            margin: 20px auto;
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px gray;
+            animation: fadeIn 0.5s;
+        }
+
+        img {
+            width: 100px;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        #recentSearches {
+            margin-top: 20px;
+        }
+
+        @media(max-width:600px) {
+            input {
+                width: 90%;
+                margin-bottom: 10px;
+            }
+
+            .card {
+                width: 90%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>Country Search App</h1>
+
+    <input type="text" id="countryInput" placeholder="Enter country name">
+
+    <button onclick="searchCountry()">
+        Search
+    </button>
+
+    <div id="loading">Loading...</div>
+
+    <div id="error"></div>
+
+    <div id="result"></div>
+
+    <div id="recentSearches">
+        <h3>Recent Searches</h3>
+        <ul id="history"></ul>
+    </div>
+
+    <script>
+
+        showHistory();
+
+        async function searchCountry() {
+
+            let country =
+                document.getElementById("countryInput").value;
+
+            let result =
+                document.getElementById("result");
+
+            let error =
+                document.getElementById("error");
+
+            let loading =
+                document.getElementById("loading");
+
+            result.innerHTML = "";
+            error.innerHTML = "";
+
+            if (country === "") {
+                error.innerHTML = "Please enter a country name";
+                return;
+            }
+
+            loading.style.display = "block";
+
+            try {
+
+                let response = await fetch(
+                    `https://countries.dev/name/${country}`
+                    );
+
+                if (!response.ok) {
+                    throw new Error();
+                }
+
+                let data = await response.json();
+                console.log(data);
+
+                let c = data[0];
+             result.innerHTML = `
+<div class="card">
+    <h2>${c.name}</h2>
+    <p><b>Capital:</b> ${c.capital}</p>
+    <p><b>Population:</b> ${c.population}</p>
+    <p><b>Region:</b> ${c.region}</p>
+    <img src="${c.flag}" alt="Flag of ${c.name}">
+</div>
+`;
+
+                saveSearch(country);
+
+            }
+
+            catch (err) {
+                console.log(err);
+                document.getElementById("result").innerHTML = "";
+                error.innerHTML = "Country not found";
+            }
+
+            finally {
+
+                loading.style.display = "none";
+
+            }
+        }
+
+        function saveSearch(country) {
+
+            let searches =
+                JSON.parse(localStorage.getItem("searches")) || [];
+
+            searches.unshift(country);
+
+            searches = searches.slice(0, 3);
+
+            localStorage.setItem(
+                "searches",
+                JSON.stringify(searches)
+            );
+
+            showHistory();
+        }
+
+        function showHistory() {
+
+            let searches =
+                JSON.parse(localStorage.getItem("searches")) || [];
+
+            let history =
+                document.getElementById("history");
+
+            history.innerHTML = "";
+
+            searches.forEach(item => {
+                let li = document.createElement("li");
+                li.textContent = item;
+                history.appendChild(li);
+
+            });
+        }
+
+    </script>
+
+</body>
+</html>
